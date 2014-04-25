@@ -1,11 +1,12 @@
 div.table_view(ng-switch="", on="status")
     div.actions(ng-switch="", on="display == -1")
-        a(href="doc/add/{{db}}/{{table}}") Add a document
-        a(href="field/add/{{db}}/{{table}}") Add a field
-        a.meta_action(href="export/{{db}}/{{table}}") Export
-        a.meta_action(href="import/{{db}}/{{table}}") Import
-        a.meta_action(href="empty/{{db}}/{{table}}") Empty
-        a.meta_action(href="delete/table/{{db}}/{{table}}") Delete this table
+        a(href="doc/add/{{db}}/{{table}}") 新增记录
+       //
+        a(href="field/add/{{db}}/{{table}}") 新增域
+        a.meta_action(href="export/{{db}}/{{table}}") 导出
+        a.meta_action(href="import/{{db}}/{{table}}") 导入
+        a.meta_action(href="empty/{{db}}/{{table}}") 清空
+        a.meta_action(href="delete/table/{{db}}/{{table}}") 删除表
 
     div.alert.hidden
         a.close(href="#", ng-click="hide($event)") ×
@@ -75,16 +76,16 @@ div.table_view(ng-switch="", on="status")
                             strong  all
                             |  documents ?
                         div.button_container
-                            button.float.btn(ng-click='cancel()') Cancel
-                            button.float.btn(ng-click='deleteField()') Delete
+                            button.float.btn(ng-click='cancel()') 取消
+                            //button.float.btn(ng-click='deleteField()') 删除
                     div.update_form_container.alert.no_border_top(ng-switch-when="rename")
                         h3.alert_title Rename the field {{fieldToChangeStr}}
                         div.doc_form_container
                         input(type="text", name="newFieldName", class="newFieldName", ng-model="newFieldName", ng-enter="renameField")
 
                         div.button_container
-                            button.float.btn(ng-click='cancel()') Cancel
-                            button.float.btn(ng-click='renameField()') Update
+                            button.float.btn(ng-click='cancel()') 取消
+                            button.float.btn(ng-click='renameField()') 确认更新
 
                                    
             tbody(ng-repeat="document in flattened_docs", ng-switch="", on="display == $index")
@@ -103,17 +104,17 @@ div.table_view(ng-switch="", on="status")
                     td.op(colspan="{{document.length+1}}", class="op-{{$index}}", ng-switch="", on="operation")
                         div.confirm_delete.alert.no_border_top(ng-switch-when="delete")
                             h3.alert_title Delete a document
-                            p Are you sure you want to delete the document above?
+                            p 确定要删除吗?
                             div.button_container
-                                button.float.btn(ng-click='cancel()') Cancel
-                                button.float.btn(ng-click='deleteDoc($index)') Delete
+                                button.float.btn(ng-click='cancel()') 不了
+                                //button.float.btn(ng-click='deleteDoc($index)') 删除
                         div.update_form_container.alert.no_border_top(ng-switch-when="update")
                             h3.alert_title Update a document
                             div.doc_form_container(ng-model="form", ng-include='', src="'partials/doc_form_field'", onload="pushScope(documents[$index])")
 
                             div.button_container
-                                button.float.btn(ng-click='cancel()') Cancel
-                                button.float.btn(ng-click='updateDoc()') Update
+                                button.float.btn(ng-click='cancel()') 取消
+                                button.float.btn(ng-click='updateDoc()') 确认更新
 
 
         div.link_previous_next(ng-switch="", on="skip > 0")
